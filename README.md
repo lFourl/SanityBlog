@@ -14,4 +14,4 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the site and [https://localhost:3000/studio](https://localhost:3000/studio) to view Sanity Studio.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the site and [http://localhost:3000/studio](http://localhost:3000/studio) to view Sanity Studio.
