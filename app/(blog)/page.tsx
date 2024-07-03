@@ -2,14 +2,14 @@
 
 import { SanityDocument } from "next-sanity";
 
-import Posts from "@/components/Posts";
+import Engineers from "@/components/Engineers";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { POSTS_QUERY } from "@/sanity/lib/queries";
+import { ENGINEERS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Page() {
-  const posts = await sanityFetch<SanityDocument[]>({
-    query: POSTS_QUERY,
+  const engineers = await sanityFetch<SanityDocument[]>({
+    query: ENGINEERS_QUERY,
   });
 
-  return <Posts posts={posts} />;
+  return <Engineers engineers={engineers} />;
 }

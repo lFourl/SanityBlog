@@ -3,27 +3,30 @@
 import { QueryParams, SanityDocument } from "next-sanity";
 import { notFound } from "next/navigation";
 
-import { POSTS_QUERY, POST_QUERY } from "@/sanity/lib/queries";
-import Post from "@/components/Post";
+import { ENGINEERS_QUERY, ENGINEER_QUERY } from "@/sanity/lib/queries";
+import Engineer from "@/components/Engineer";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
 
 export async function generateStaticParams() {
-  const posts = await sanityFetch<SanityDocument[]>({
-    query: POSTS_QUERY,
+  const engineers = await sanityFetch<SanityDocument[]>({
+    query: ENGINEERS_QUERY,
     perspective: "published",
     stega: false,
   });
 
-  return posts.map((post) => ({
-    slug: post.slug.current,
+  return engineers.map((engineer) => ({
+    slug: engineer.slug.current,
   }));
 }
 
 export default async function Page({ params }: { params: QueryParams }) {
-  const post = await sanityFetch<SanityDocument>({ query: POST_QUERY, params });
-  if (!post) {
+  const engineer = await sanityFetch<SanityDocument>({
+    query: ENGINEER_QUERY,
+    params,
+  });
+  if (!engineer) {
     return notFound();
   }
-  return <Post post={post} />;
+  return <Engineer engineer={engineer} />;
 }
